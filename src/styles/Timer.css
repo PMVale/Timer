@@ -1,0 +1,46 @@
+.timer-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15%;
+  border: 2px solid black;
+  max-width: 50vw;
+  margin-left: 25%;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.696);
+}
+
+.timer-display {
+  padding: 20px;
+}
+
+.timer-display p {
+  font-size: 80px;
+}
+
+.timer-inputs input {
+  max-width: 38px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.696);
+  border: none;
+}
+
+.timer-inputs {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.timer-alert {
+  padding: 20px;
+}
+
+.timer-alert p {
+  font-size: 80px;
+  text-align: center;
+}
+
+.timer-alert audio {
+  max-width: 15vw;
+}
