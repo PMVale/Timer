@@ -89,18 +89,21 @@ class Timer extends Component {
     this.setState({
       [name]: value
     }, () => {
-      const {inputMinutes, inputSeconds} = this.state;
+      const {inputHours, inputMinutes, inputSeconds} = this.state;
       if (inputMinutes > 60) {
         this.setState({inputMinutes: 60});
       }
-      if (inputMinutes < 0) {
+      if (inputMinutes < 0 || inputMinutes === '') {
         this.setState({inputMinutes: 0});
       }
       if (inputSeconds > 60) {
         this.setState({inputSeconds: 60});
       }
-      if (inputSeconds < 0) {
+      if (inputSeconds < 0 || inputSeconds === '') {
         this.setState({inputSeconds: 0});
+      }
+      if (inputHours < 0 || inputHours === '') {
+        this.setState({inputHours: 0});
       }
     });
   };
