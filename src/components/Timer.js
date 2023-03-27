@@ -130,7 +130,7 @@ class Timer extends Component {
             <i className="bi bi-arrow-clockwise"></i>
           </button>
           <button type='button' className='btn' onClick={ this.handleMute }>
-            {playSound ? <i className="bi bi-volume-mute-fill"></i> : <i className="bi bi-volume-up-fill"></i>}
+            {!playSound ? <i className="bi bi-volume-mute-fill"></i> : <i className="bi bi-volume-up-fill"></i>}
           </button>
         </section>
       </div>
