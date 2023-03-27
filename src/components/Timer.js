@@ -75,10 +75,11 @@ class Timer extends Component {
   };
 
   handleMute = () => {
-    const {playSound} = this.state;
-    if (playSound) {
+    const {playSound, hasFinished} = this.state;
+    if (playSound && hasFinished) {
       this.setState({playSound: false});
-    } else {
+    }
+    if (!playSound && hasFinished) {
       this.setState({playSound: true});
     }
   };
