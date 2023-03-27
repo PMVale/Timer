@@ -129,15 +129,15 @@ class Timer extends Component {
         )}
         <section className='timer-inputs'>
           <label>
-            <input type='number' value={inputHours} name='inputHours' onChange={this.handleChange} min={0} max={60} disabled={isRunning} />
+            <input type='number' value={ inputHours } name='inputHours' onChange={this.handleChange} min={0} max={60} disabled={isRunning} />
             hr
           </label>
           <label>
-            <input type='number' value={inputMinutes} name='inputMinutes' onChange={this.handleChange} min={0} max={60} maxLength={2} disabled={isRunning} />
+            <input type='number' value={ inputMinutes } name='inputMinutes' onChange={this.handleChange} min={0} max={60} maxLength={2} disabled={isRunning} />
             min
           </label>
           <label>
-            <input type='number' value={inputSeconds} name='inputSeconds' onChange={this.handleChange} min={0} max={60} maxLength={2} disabled={isRunning} />
+            <input type='number' value={ inputSeconds } name='inputSeconds' onChange={this.handleChange} min={0} max={60} maxLength={2} disabled={isRunning} />
             s
           </label>
           <button type='button' className='btn' onClick={ this.handleStart }>
