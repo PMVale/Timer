@@ -88,6 +88,20 @@ class Timer extends Component {
     const {name, value} = target;
     this.setState({
       [name]: value
+    }, () => {
+      const {inputMinutes, inputSeconds} = this.state;
+      if (inputMinutes > 60) {
+        this.setState({inputMinutes: 60});
+      }
+      if (inputMinutes < 0) {
+        this.setState({inputMinutes: 0});
+      }
+      if (inputSeconds > 60) {
+        this.setState({inputSeconds: 60});
+      }
+      if (inputSeconds < 0) {
+        this.setState({inputSeconds: 0});
+      }
     });
   };
 
@@ -116,11 +130,11 @@ class Timer extends Component {
             hr
           </label>
           <label>
-            <input type='number' value={inputMinutes} name='inputMinutes' onChange={this.handleChange} min={0} max={60} disabled={isRunning} />
+            <input type='number' value={inputMinutes} name='inputMinutes' onChange={this.handleChange} min={0} max={60} maxLength={2} disabled={isRunning} />
             min
           </label>
           <label>
-            <input type='number' value={inputSeconds} name='inputSeconds' onChange={this.handleChange} min={0} max={60} disabled={isRunning} />
+            <input type='number' value={inputSeconds} name='inputSeconds' onChange={this.handleChange} min={0} max={60} maxLength={2} disabled={isRunning} />
             s
           </label>
           <button type='button' className='btn' onClick={ this.handleStart }>
