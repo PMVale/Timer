@@ -9,6 +9,7 @@ class Timer extends Component {
     inputSeconds: 0,
     isRunning: false,
     playSound: false,
+    hasFinished: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -48,22 +49,38 @@ class Timer extends Component {
       this.setState({
         isRunning: false,
         playSound: true,
+        hasFinished: true,
       });
     }
   };
 
   handleStart = () => {
-    this.setState({isRunning: true});
+    const {isRunning} = this.state;
+    if (!isRunning) {
+      this.setState({isRunning: true});
+    } else {
+      this.setState({isRunning: false});
+    }
   };
 
   handleReset = () => {
     this.setState({
       playSound: false,
       isRunning: false,
+      hasFinished: false,
       inputHours: 0,
       inputMinutes: 0,
       inputSeconds: 0,
     });
+  };
+
+  handleMute = () => {
+    const {playSound} = this.state;
+    if (playSound) {
+      this.setState({playSound: false});
+    } else {
+      this.setState({playSound: true});
+    }
   };
 
   handleChange = ({target}) => {
@@ -74,21 +91,21 @@ class Timer extends Component {
   };
 
   render() {
-    const { inputHours, inputMinutes, inputSeconds, playSound, isRunning} = this.state;
+    const { inputHours, inputMinutes, inputSeconds, playSound, isRunning, hasFinished} = this.state;
     return (
       <div className='timer-body'>
-        {!playSound && (
+        {!hasFinished && (
           <section className='timer-display'>
             <p>
               {`${inputHours}hr`} {`${inputMinutes}min`} {`${inputSeconds}s`}
             </p>
           </section>
         )}
-        {playSound && (
+        {hasFinished && (
           <section className='timer-alert'>
             <div>
               <p>Acabou o tempo !</p>  
-              <audio autoPlay src={alarm} />
+              {playSound && <audio autoPlay src={alarm} />}
             </div>
           </section>
         )}
@@ -106,10 +123,13 @@ class Timer extends Component {
             s
           </label>
           <button type='button' className='btn' onClick={ this.handleStart }>
-            <i className="bi bi-play-fill"></i>
+            {!isRunning ? <i className="bi bi-play-fill"></i> : <i className="bi bi-pause-fill"></i> }
           </button>
           <button type='button' className='btn' onClick={ this.handleReset }>
             <i className="bi bi-arrow-clockwise"></i>
+          </button>
+          <button type='button' className='btn' onClick={ this.handleMute }>
+            {playSound ? <i className="bi bi-volume-mute-fill"></i> : <i className="bi bi-volume-up-fill"></i>}
           </button>
         </section>
       </div>
